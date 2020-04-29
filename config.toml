@@ -1,7 +1,13 @@
-baseURL = "http://example.org/"
+#baseURL = "https://justinhauer.net"
 languageCode = "en-us"
 title = "Technology Evangelist"
 theme = "ananke"
+
+MetaDataFormat = "yaml"
+DefaultContentLanguage = "en"
+SectionPagesMenu = "main"
+Paginate = 3 # this is set low for demonstrating with dummy content. Set to a higher number
+enableRobotsTXT = true
 
 [deployment]
 
@@ -11,7 +17,7 @@ name = "mydeployment"
 
 # S3; see https://gocloud.dev/howto/blob/#s3
 # For S3-compatible endpoints, see https://gocloud.dev/howto/blob/#s3-compatible
-URL = "s3://justin-hugo-site?region=us-east-2"
+URL = "s3://justinhauer.net?region=us-east-2"
 
 #cloudFrontDistributionID = <ID>
 
@@ -29,3 +35,15 @@ gzip = false
 [[deployment.matchers]]
 pattern = "^.+\\.(html|xml|json)$"
 gzip = true
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  favicon = ""
+  description = "Personal blog of Justin Hauer"
+  background_color_class = "bg-black"
+  featured_image = "/images/twin_cities.jpg"
+  recent_posts_number = 2

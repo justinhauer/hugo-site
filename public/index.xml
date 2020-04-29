@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Justin Hauer on Technology Evangelist</title>
+    <link>/</link>
+    <description>Recent content in Justin Hauer on Technology Evangelist</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Apr 2020 09:02:41 -0500</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Building an Almost Free Serverless Website</title>
+      <link>/posts/serverless-website/</link>
+      <pubDate>Wed, 29 Apr 2020 09:02:41 -0500</pubDate>
+      
+      <guid>/posts/serverless-website/</guid>
+      <description>Overview So you&amp;rsquo;ve come to a point where you want to build yourself a simple static website to front your business, any myraid of personal reasons, or even start a personal blog.
+While there are literally tons of ways to deploy a site like this, it doesn&amp;rsquo;t need to be complex or expensive. In fact, I will go over how you can create a nearly free website just like this one (or maybe even better if you spend more time developing the site than I do) using free tools that are available to you.</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/contact/</guid>
+      <description>If you would like to contact me, please reach out on LinkedIn</description>
+    </item>
+    
+  </channel>
+</rss>
