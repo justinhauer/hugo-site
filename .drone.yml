@@ -1,0 +1,15 @@
+s3://justinhauer.net?region=us-east-2
+
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: plugins/hugo
+  settings:
+    validate: true
+
+- name: deploy
+  image: plugins/hugo
+  commands:
+    hugo deploy --target=mydeployment
