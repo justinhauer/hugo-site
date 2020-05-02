@@ -1,5 +1,3 @@
-s3://justinhauer.net?region=us-east-2
-
 kind: pipeline
 name: default
 
