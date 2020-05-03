@@ -8,7 +8,7 @@ steps:
     validate: true
 
 - name: deploy
-  image: plugins/hugo
+  image: docker pull jhauer1/hugo-build-deploy:v0.0.1
   environment:
     AWS_DEFAULT_REGION:
       from_secret: AWS_DEFAULT_REGION
