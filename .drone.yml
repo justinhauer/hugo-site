@@ -17,4 +17,5 @@ steps:
     AWS_DEFAULT_REGION:
       from_secret: AWS_SECRET_ACCESS_KEY
   commands:
+    - echo $AWS_DEFAULT_REGION
     - hugo deploy --target=mydeployment
