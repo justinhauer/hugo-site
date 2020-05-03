@@ -10,8 +10,8 @@ steps:
 - name: deploy
   image: jhauer1/hugo-build-deploy:v0.0.1
   environment:
-    AWS_DEFAULT_REGION:
-      from_secret: AWS_DEFAULT_REGION
+    AWS_DEFAULT_REGION: us-east-2
+      # from_secret: AWS_DEFAULT_REGION
     AWS_DEFAULT_REGION:
       from_secret: AWS_ACCESS_KEY_ID
     AWS_DEFAULT_REGION:
