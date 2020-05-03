@@ -9,7 +9,6 @@ steps:
 
 - name: deploy
   image: plugins/hugo
-  # image: jhauer1/hugo-build-deploy:v0.0.1
   environment:
     AWS_DEFAULT_REGION:
       from_secret: AWS_DEFAULT_REGION
@@ -18,7 +17,4 @@ steps:
     AWS_SECRET_ACCESS_KEY:
       from_secret: AWS_SECRET_ACCESS_KEY
   commands:
-    # - aws configure set default.region $AWS_DEFAULT_REGION
-    # - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-    # - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
     - hugo deploy --target=mydeployment
