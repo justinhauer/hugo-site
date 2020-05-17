@@ -43,7 +43,7 @@ gzip = true
 
 [params]
   favicon = ""
-  description = "Personal blog of Justin Hauer"
+  description = "Personal blog postings of Justin Hauer"
   background_color_class = "bg-black"
   featured_image = "/images/twin_cities.jpg"
   recent_posts_number = 2

@@ -8,4 +8,4 @@ menu: main
 
 ---
 
-If you would like to contact me, please reach out on LinkedIn
+Please reach out to Justin Hauer on LinkedIn
