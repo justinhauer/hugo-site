@@ -41,6 +41,6 @@ steps:
   # - terraform apply --auto-approve
   when:
     ref:
-    -refs/tags/**
+    - refs/tags/**
 
 
