@@ -39,7 +39,7 @@ steps:
     backend: s3
     config:
       bucket: tfstates-justin
-      key: tfstates-justin/components
+      key: tfstates-justin/hugo-components
       region: us-east-2
   sensititve: true
   # commands:
