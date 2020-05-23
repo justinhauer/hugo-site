@@ -7,7 +7,7 @@ steps:
   settings:
     validate: true
 
-- name: deploy
+- name: deploy content
   image: plugins/hugo
   environment:
     AWS_DEFAULT_REGION:
@@ -18,3 +18,29 @@ steps:
       from_secret: AWS_SECRET_ACCESS_KEY
   commands:
     - hugo deploy --target=mydeployment
+  when:
+    branch:
+    - master
+    event:
+    - push 
+
+- name: infra deploy 
+  image: jmccann/drone-terraform:6
+  pull: if-not-exists
+  plan: false
+  remote:
+    backend: s3
+    config:
+      bucket: tfstates-justin
+      key: tfstates-justin/components
+      region: us-east-2
+  sensititve: true
+  # commands:
+  # - terraform init -backend-config='backend config here'
+  # - terraform plan
+  # - terraform apply --auto-approve
+  when:
+    ref:
+    -refs/tags/**
+
+

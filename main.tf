@@ -1,14 +1,32 @@
-# provider "aws" {
-#   # ... other configuration ...
+provider "aws" {
+  # ... other configuration ...
+  region = "us-east-2"
+  version = "~> 2.0"
+}
 
-#   version = "~> 3.0"
-# }
+terraform {
+  backend "s3" {
+    bucket = "tfstates-justin"
+    key    = "hugo-site/components"
+    region = "us-east-2"
+  }
+}
 
-#Create bucket for static site content justinhauer.net
+resource "aws_s3_bucket" "b" {
+  bucket = "my-tf-test-bucket-jhauer1"
+  acl    = "private"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
+
+# Create bucket for static site content justinhauer.net
 #  resource "aws_s3_bucket" "static_site" {
-#   bucket = "s3-website-test.hashicorp.com"
+#   bucket = "tf-test-bucket"
 #   acl    = "public-read"
-#   policy = "${file("policy.json")}"
+#   policy = "file("access-policies/policy.json")"
 
 #   website {
 #     index_document = "index.html"
@@ -24,7 +42,7 @@
 #     }
 # }]
 # EOF
-#   }
+  # }
 # }
 
 
