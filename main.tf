@@ -1,6 +1,6 @@
 provider "aws" {
   # ... other configuration ...
-  region = "AWS_DEFAULT_REGION"
+  region = "us-east-2"
   version = "~> 2.0"
   access_key = "AWS_ACCESS_KEY_ID"
   secret_key = "AWS_SECRET_ACCESS_KEY"

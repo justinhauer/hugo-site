@@ -46,8 +46,11 @@ steps:
   # - terraform init -backend-config='backend config here'
   # - terraform plan
   # - terraform apply --auto-approve
+  # when:
+  #   ref:
+  #   - refs/tags/**
   when:
-    ref:
-    - refs/tags/**
-
-
+    branch:
+    - master
+    event:
+    - push 
