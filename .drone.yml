@@ -28,9 +28,16 @@ steps:
   image: jmccann/drone-terraform:6
   pull: if-not-exists
   plan: false
-  secrets:
-    AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
-    AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
+  environment:
+    AWS_DEFAULT_REGION:
+      from_secret: AWS_DEFAULT_REGION
+    AWS_ACCESS_KEY_ID:
+      from_secret: AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY:
+      from_secret: AWS_SECRET_ACCESS_KEY
+  # secrets:
+  #   AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
+  #   AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
   remote:
     backend: s3
     config:
