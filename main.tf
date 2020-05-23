@@ -10,7 +10,7 @@ terraform {
   backend "s3" {
     bucket = "tfstates-justin"
     key    = "hugo-site/hugo-components"
-    region = "AWS_DEFAULT_REGION"
+    region = "us-east-2"
   }
 }
 
