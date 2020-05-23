@@ -1,14 +1,16 @@
 provider "aws" {
   # ... other configuration ...
-  region = "us-east-2"
+  region = "AWS_DEFAULT_REGION"
   version = "~> 2.0"
+  access_key = "AWS_ACCESS_KEY_ID"
+  secret_key = "AWS_SECRET_ACCESS_KEY"
 }
 
 terraform {
   backend "s3" {
     bucket = "tfstates-justin"
-    key    = "hugo-site/components"
-    region = "us-east-2"
+    key    = "hugo-site/hugo-components"
+    region = "AWS_DEFAULT_REGION"
   }
 }
 
