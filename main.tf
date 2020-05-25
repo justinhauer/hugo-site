@@ -20,34 +20,41 @@ resource "aws_s3_bucket" "log_bucket" {
 
  resource "aws_s3_bucket_policy" "public_bucket_policy" {
    bucket = aws_s3_bucket.log_bucket.id
-   policy = <<POLICY
-  {"Version": "2012-10-17",
-  "Statement": [{
-    "Sid": "PublicReadGetObject",
-    "Effect": "Allow",
-    "Principal": "*",
-    "Action": "s3:GetObject",
-    "Resource": "arn:aws:s3:::justin-tf-test-bucket/*"}]}
- POLICY
- }
 
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Id": "MYBUCKETPOLICY",
+  "Statement": [
+    {
+      "Sid": "IPAllow",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": "arn:aws:s3:::logging-test.justinhauer.net/*"
+    }
+  ]
+}
+POLICY
+}
+
+#    policy = <<POLICY
+#   {"Version": "2012-10-17",
+#   "Statement": [{
+#     "Sid": "PublicReadGetObject",
+#     "Effect": "Allow",
+#     "Principal": "*",
+#     "Action": "s3:GetObject",
+#     "Resource": "arn:aws:s3:::justin-tf-test-bucket/*"}]}
+#  POLICY
 # Create bucket for static site content justinhauer.net
  resource "aws_s3_bucket" "static_site" {
   bucket = "justin-tf-test-bucket"
   acl    = "public-read"
-  policy = aws_s3_bucket_policy.public_bucket_policy.id
-
-
-  # policy = "${file("access-policies/policy.json")}"
-  # policy = <<POLICY
-  
-
-  # POLICY
-
+  policy = file("policy.json")
   website {
-    index_document = "${file("./public/index.html")}"
-    error_document = "${file("./public/404.html")}"
-
+    index_document = "index.html"
+    error_document = "404.html"
   }
   logging {
     target_bucket = aws_s3_bucket.log_bucket.id
