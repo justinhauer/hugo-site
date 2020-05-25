@@ -18,7 +18,7 @@ resource "aws_s3_bucket" "log_bucket" {
   acl    = "log-delivery-write"
 }
 
- resource "aws_iam_policy" "public_bucket_policy" {
+ resource "aws_s3_bucket_policy" "public_bucket_policy" {
    bucket = aws_s3_bucket.log_bucket.id
    policy = <<POLICY
   {"Version": "2012-10-17",
