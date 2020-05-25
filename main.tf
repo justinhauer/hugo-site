@@ -1,8 +1,9 @@
+# Provider Block
 provider "aws" {
   region = "us-east-2"
   version = "~> 2.0"
 }
-
+# Backend S3 state
 terraform {
   backend "s3" {
     bucket = "tfstates-justin"
@@ -11,78 +12,28 @@ terraform {
   }
 }
 
-resource "aws_s3_bucket" "b" {
-  bucket = "my-tf-test-bucket-jhauer1"
-  acl    = "private"
-
-  tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
-  }
+# Enable logging for justinhauer.net, might have to delete some stuff for this
+resource "aws_s3_bucket" "log_bucket" {
+  bucket = "logging-test.justinhauer.net"
+  acl    = "log-delivery-write"
 }
 
 # Create bucket for static site content justinhauer.net
-#  resource "aws_s3_bucket" "static_site" {
-#   bucket = "tf-test-bucket"
-#   acl    = "public-read"
-#   policy = "file("access-policies/policy.json")"
+ resource "aws_s3_bucket" "static_site" {
+  bucket = "justin-tf-test-bucket"
+  acl    = "public-read"
+  policy = "file("access-policies/policy.json")"
 
-#   website {
-#     index_document = "index.html"
-#     error_document = "error.html"
+  website {
+    index_document = "public/index.html"
+    error_document = "public/404.html"
 
-#     routing_rules = <<EOF
-# [{
-#     "Condition": {
-#         "KeyPrefixEquals": "docs/"
-#     },
-#     "Redirect": {
-#         "ReplaceKeyPrefixWith": "documents/"
-#     }
-# }]
-# EOF
-  # }
-# }
-
-
-# #Create bucket for static site content www.justinhauer.net
-#  resource "aws_s3_bucket" "static_site" {
-#   bucket = "s3-website-test.hashicorp.com"
-#   acl    = "public-read"
-#   policy = "${file("policy.json")}"
-
-#   website {
-#     index_document = "index.html"
-#     error_document = "error.html"
-
-#     routing_rules = <<EOF
-# [{
-#     "Condition": {
-#         "KeyPrefixEquals": "docs/"
-#     },
-#     "Redirect": {
-#         "ReplaceKeyPrefixWith": "documents/"
-#     }
-# }]
-# EOF
-#   }
-# }
-
-# enable logging for justinhauer.net, might have to delete some stuff for this
-# resource "aws_s3_bucket" "log_bucket" {
-#   bucket = "my-tf-log-bucket"
-#   acl    = "log-delivery-write"
-# }
-
-# resource "aws_s3_bucket" "b" {
-#   bucket = "my-tf-test-bucket"
-#   acl    = "private"
-
-#   logging {
-#     target_bucket = "${aws_s3_bucket.log_bucket.id}"
-#     target_prefix = "log/"
-#   }
-# }
+  }
+    logging {
+    target_bucket = aws_s3_bucket.log_bucket.id
+    target_prefix = "log/"
+  }
+}
 
 ## look into importing the zone?
 
