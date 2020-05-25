@@ -18,25 +18,36 @@ resource "aws_s3_bucket" "log_bucket" {
   acl    = "log-delivery-write"
 }
 
+ resource "aws_iam_policy" "public_bucket_policy" {
+   # ... other configuration ...
+   policy = <<POLICY
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+          "Sid": "PublicReadGetObject",
+          "Effect": "Allow",
+          "Principal": "*",
+          "Action": "s3:GetObject",
+          "Resource": "arn:aws:s3:::justin-tf-test-bucket/*"
+        }  
+    ]
+  }
+ POLICY
+ }
+
+
 # Create bucket for static site content justinhauer.net
  resource "aws_s3_bucket" "static_site" {
   bucket = "justin-tf-test-bucket"
   acl    = "public-read"
+  policy = aws_iam_policy.public_bucket_policy.id
+
+
   # policy = "${file("access-policies/policy.json")}"
   # policy = <<POLICY
-  # {
-  #   "Version": "2012-10-17",
-  #   "ID": "MYBUCKETPOLICY",
-  #   "Statement": [
-  #       {
-  #         "Sid": "PublicReadGetObject",
-  #         "Effect": "Allow",
-  #         "Principal": "*",
-  #         "Action": "s3:GetObject",
-  #         "Resource": "arn:aws:s3:::justin-tf-test-bucket/*"
-  #       }  
-  #   ]
-  # }
+  
+
   # POLICY
 
   website {
