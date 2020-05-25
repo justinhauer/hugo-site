@@ -19,6 +19,7 @@ resource "aws_s3_bucket" "log_bucket" {
 }
 
  resource "aws_iam_policy" "public_bucket_policy" {
+   bucket = aws_s3_bucket.log_bucket.id
    policy = <<POLICY
   {"Version": "2012-10-17",
   "Statement": [{
