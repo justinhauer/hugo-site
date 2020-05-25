@@ -22,14 +22,14 @@ resource "aws_s3_bucket" "log_bucket" {
  resource "aws_s3_bucket" "static_site" {
   bucket = "justin-tf-test-bucket"
   acl    = "public-read"
-  policy = file("access-policies/policy.json")
+  policy = "${file("access-policies/policy.json")}"
 
   website {
-    index_document = "public/index.html"
-    error_document = "public/404.html"
+    index_document = "${file(public/index.html")}"
+    error_document = "${file(public/404.html")}"
 
   }
-    logging {
+  logging {
     target_bucket = aws_s3_bucket.log_bucket.id
     target_prefix = "log/"
   }
