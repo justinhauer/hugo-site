@@ -35,7 +35,7 @@ resource "aws_s3_bucket" "log_bucket" {
  resource "aws_s3_bucket" "static_site" {
   bucket = "justin-tf-test-bucket"
   acl    = "public-read"
-  policy = aws_iam_policy.public_bucket_policy.id
+  policy = aws_s3_bucket_policy.public_bucket_policy.id
 
 
   # policy = "${file("access-policies/policy.json")}"
