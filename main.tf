@@ -51,8 +51,8 @@ resource "aws_s3_bucket" "log_bucket" {
   # POLICY
 
   website {
-    index_document = "${file("public/index.html")}"
-    error_document = "${file("public/404.html")}"
+    index_document = "${file("./public/index.html")}"
+    error_document = "${file("./public/404.html")}"
 
   }
   logging {
