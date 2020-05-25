@@ -25,20 +25,20 @@ resource "aws_s3_bucket" "log_bucket" {
   # policy = "${file("access-policies/policy.json")}"
   policy = <<POLICY
   {
-
     "Version": "2012-10-17",
     "ID": "MYBUCKETPOLICY",
     "Statement": [
         {
-            "Sid": "PublicReadGetObject",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:GetObject",
-            "Resource": "arn:aws:s3:::justin-tf-test-bucket/*"
-        }
+          "Sid": "PublicReadGetObject",
+          "Effect": "Allow",
+          "Principal": "*",
+          "Action": "s3:GetObject",
+          "Resource": "arn:aws:s3:::justin-tf-test-bucket/*"
+        }  
     ]
   }
   POLICY
+
   website {
     index_document = "${file("public/index.html")}"
     error_document = "${file("public/404.html")}"
